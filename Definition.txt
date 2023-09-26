@@ -5,6 +5,10 @@ NEAR
     Được phát triển bởi các chuyên gia trong lĩnh vực blockchain vào năm 2020
     Một số nền tảng blockchain phổ biến: Ethereum, Polkadot, Solana, EOS, ...
 
+    * Đội ngũ phát triển: 
+        NEAR được phát triển bởi Near Protocol, Inc,... và 1 số công ty công nghệ blockchain
+        Có trụ sở tại San Francisco, California và cộng đồng lập trình viên rộng lớn
+
 
     * Mục tiêu chính:
         NEAR đặt ra mục tiêu là cung cấp 1 môi trường phát triển dApps để sử dụng và có khả năng mở rộng tốt.
@@ -22,6 +26,9 @@ NEAR
             Paras: một thị trường nghệ thuật phi tập trung, cho phép người dung buôn bán các tác phẩm nghệ thuật kĩ thuật số, được lưu trữ và quản lý = smart contract trên NEAR 
             Ref Finance: một hệ thống tài chính phi tập trung, cung cấp dịch vụ vay, cho vay và gửi tiền, giúp người dùng tận dùng tài sản số mà họ có 
             Ngoài ra còn có 1 số ứng dụng như NFT, blockchain games, e-wallet cũng được phát triển trên nền tảng NEAR
+
+    * Mở rộng và phát triển:
+        NEAR đã và đang phát triển với các cải tiến và nâng cấp liên tục để nâng cao khả năng mở rộng và hiệu suất của nền tảng
 
     -- Suy nghĩ riêng --
     ( Việc xây dựng và phát triển ra các nền tảng blockchain nó cũng giống như việc họ đang xây dựng 1 quốc gia ảo. Trong quốc gia đó họ dùng đồng token riêng của họ
@@ -65,11 +72,3 @@ NEAR
 
         Smart contract đã giúp tạo ra các ứng dụng phi tập trung và cách tiếp cận mới đối với thỏa thuận và giao dịch, đặc biệt trong lĩnh vực blockchain và tiền điện tử.
     
-    * Đội ngũ phát triển: 
-        NEAR được phát triển bởi Near Protocol, Inc,... và 1 số công ty công nghệ blockchain
-        Có trụ sở tại San Francisco, California và cộng đồng lập trình viên rộng lớn
-
-
-    * Mở rộng và phát triển:
-        NEAR đã và đang phát triển với các cải tiến và nâng cấp liên tục để nâng cao khả năng mở rộng và hiệu suất của nền tảng
-
