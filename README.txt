@@ -66,5 +66,4 @@
     cargo make call view_freelancer_by_id --account-id nkeyskuo124.testnet
 
 . Payment 
-    cargo make call payment '{"job_id": "J-1695675109179875436"}' --account-id nkeyskuo124.testnet 
-
+    cargo make call pay_for_job '{"job_id": "J-1695675109179875436"}' --account-id nkeyskuo124.testnet 

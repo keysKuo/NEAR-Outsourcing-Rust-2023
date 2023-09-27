@@ -1,7 +1,7 @@
 use near_sdk::borsh::{ self, BorshDeserialize, BorshSerialize };
 use near_sdk::serde::{ Deserialize, Serialize };
 use near_sdk::collections::{ LookupMap, UnorderedMap };
-use near_sdk::{ env, near_bindgen, AccountId, Balance, PanicOnDefault, Promise };
+use near_sdk::{ json_types::U128, env, near_bindgen, AccountId, Balance, PanicOnDefault, Promise };
 
 
 pub type FreeLancerId = AccountId;
@@ -35,8 +35,9 @@ pub trait OutSourcing {
     fn remove_job(&mut self, job_id: JobId) -> Job;
 
     // Payment
-    fn payment(&mut self, job_id: JobId) -> Promise;
-    
+    fn payment(&mut self, amount: U128, receiver: AccountId) -> Promise;
+    fn payment_test(&mut self, receiver: AccountId) -> Promise;
+    fn pay_for_job(&mut self, job_id: JobId) -> u128;
     // View
     fn view_all_jobs(&self) -> Vec<Job>;
     fn view_job_by_id(&self, job_id: JobId) -> Job;
@@ -261,25 +262,31 @@ impl OutSourcing for Contract {
         assert!(self.job_by_id.contains_key(&job_id), "This job doesn't exist");
         self.job_by_id.get(&job_id).unwrap()
     }
-    #[payable]
-    fn payment(&mut self, job_id: JobId) -> Promise {
-        // Assert!
-        // Price == env::attached_deposit();
-        let job = self.view_job_by_id(job_id.clone());
-        assert_eq!(job.author, env::signer_account_id(), "You are not owner");
-        
-        // let conversion_ratio: Balance = 1000000000000000000000000;
-        // assert_eq!(job.budget, env::attached_deposit() / conversion_ratio, "Not enough currecy");
-        let mut fee: u128 = 0;
-        if job.budget > fee {
-            fee = job.budget;
-        }
 
-        if let Some(executor) = job.executor {     
-            Promise::new(executor).transfer(fee)
-        } else {
-            Promise::new(env::signer_account_id()).as_return()
+    #[payable]
+    fn payment(&mut self, amount: U128, receiver: AccountId) -> Promise {   
+        Promise::new(receiver).transfer(amount.0) 
+    }
+
+    #[payable]
+    fn payment_test(&mut self, receiver: AccountId) -> Promise {
+        Promise::new(receiver).transfer(env::attached_deposit()) 
+    }
+    
+    #[payable]
+    fn pay_for_job(&mut self, job_id: JobId) -> u128 {
+        let job = self.view_job_by_id(job_id.clone());
+
+        assert_eq!(job.author, env::signer_account_id(), "You are not owner");
+        if let Some(executor) = job.executor {
+            let conversion_ratio: u128 = 1_000_000_000_000_000_000_000_000;
+            let _budget: u128 = job.budget * conversion_ratio;
+            assert!(_budget <= env::account_balance(), "Not enough currecy");
+
+            self.payment(near_sdk::json_types::U128(_budget), executor);
+            return _budget;
         }
+        0
     }
 
     fn view_freelancer_by_id(&self) -> FreeLancer {
