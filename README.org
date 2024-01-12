@@ -14,7 +14,7 @@ Make sure you have a current version of Node.js & Rust installed => We recommend
 * Getting Started
 ** Clone the repository
 #+begin_src sh :results output
-git clone https://github.com/eamondang/started-near-app.git && cd started-near-app
+https://github.com/keysKuo/NEAR-Outsourcing-Rust-2023.git
 #+end_src
 
 ** Requirements Install
